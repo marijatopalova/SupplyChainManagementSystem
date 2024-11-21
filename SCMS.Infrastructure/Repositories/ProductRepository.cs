@@ -1,44 +1,49 @@
-﻿using SCMS.Application.Interfaces.Repositories;
+﻿using Microsoft.EntityFrameworkCore;
+using SCMS.Application.Interfaces.Repositories;
 using SCMS.Domain.Entities;
 using SCMS.Infrastructure.Persistence;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SCMS.Infrastructure.Repositories
 {
     public class ProductRepository(AppDbContext dbContext) : IProductRepository
     {
-        public Task AddAsync(Product entity)
+        public async Task AddAsync(Product entity)
         {
-            throw new NotImplementedException();
+            dbContext.Products.Add(entity);
+            await dbContext.SaveChangesAsync();
         }
 
-        public Task DeleteAsync(Product entity)
+        public async Task DeleteAsync(Product entity)
         {
-            throw new NotImplementedException();
+            dbContext.Products.Remove(entity);
+            await dbContext.SaveChangesAsync();
         }
 
-        public Task<IList<Product>> GetAllAsync()
+        public async Task<IList<Product>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            return await dbContext.Products
+                .AsNoTracking()
+                .ToListAsync();
         }
 
-        public Task<Product> GetByIdAsync(Guid id)
+        public async Task<Product> GetByIdAsync(Guid id)
         {
-            throw new NotImplementedException();
+            return await dbContext.Products
+                .AsNoTracking()
+                .FirstOrDefaultAsync(p => p.Id == id);
         }
 
-        public Task<Product> GetProductByNameAsync(string name)
+        public async Task<Product> GetProductByNameAsync(string name)
         {
-            throw new NotImplementedException();
+            return await dbContext.Products
+                .AsNoTracking()
+                .FirstOrDefaultAsync(p => p.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
         }
 
-        public Task UpdateAsync(Product entity)
+        public async Task UpdateAsync(Product entity)
         {
-            throw new NotImplementedException();
+            dbContext.Update(entity);
+            await dbContext.SaveChangesAsync();
         }
     }
 }
