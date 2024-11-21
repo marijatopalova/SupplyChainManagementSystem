@@ -14,9 +14,11 @@
     <Folder Include="Features\Orders\Dtos\" />
     <Folder Include="Features\Orders\Events\" />
     <Folder Include="Features\Orders\Queries\" />
-    <Folder Include="Features\Products\Commands\" />
-    <Folder Include="Features\Products\Dtos\" />
     <Folder Include="Features\Products\Queries\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MediatR" Version="12.4.1" />
   </ItemGroup>
 
   <ItemGroup>
