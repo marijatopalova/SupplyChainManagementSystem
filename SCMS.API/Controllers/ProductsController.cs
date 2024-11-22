@@ -39,5 +39,20 @@ namespace SCMS.API.Controllers
 
             return Ok(products);
         }
+
+        /// <summary>
+        /// Gets a product by its ID.
+        /// </summary>
+        /// <param name="id">The ID of the product.</param>
+        /// <returns>The product details.</returns>
+        [HttpGet("{id:guid}")]
+        public async Task<ActionResult<ProductDto>> GetProductById(Guid id)
+        {
+            var query = new GetProductByIdQuery(id);
+
+            var product = await mediator.Send(query);
+
+            return Ok(product);
+        }
     }
 }
