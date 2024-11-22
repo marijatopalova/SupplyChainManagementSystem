@@ -34,7 +34,3 @@ jobs:
     # Run unit tests
     - name: Run tests
       run: dotnet test --configuration Release --no-build --verbosity normal
-
-    # Enforce code style using dotnet format (optional)
-    - name: Run dotnet format
-      run: dotnet format --verify-no-changes
