@@ -1,7 +1,8 @@
 ﻿using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using SCMS.Application.Dtos;
 using SCMS.Application.Features.Products.Commands;
+using SCMS.Application.Features.Products.Queries;
 
 namespace SCMS.API.Controllers
 {
@@ -23,6 +24,20 @@ namespace SCMS.API.Controllers
             var result = await mediator.Send(command);
 
             return Ok(result);
+        }
+
+        /// <summary>
+        /// Retrieves a list of all products from the database.
+        /// </summary>
+        /// <returns>A list of products that are not marked as deleted.</returns>
+        [HttpGet]
+        public async Task<ActionResult<List<ProductDto>>> GetAllProducts()
+        {
+            var query = new GetAllProductsQuery();
+
+            var products = await mediator.Send(query);
+
+            return Ok(products);
         }
     }
 }
