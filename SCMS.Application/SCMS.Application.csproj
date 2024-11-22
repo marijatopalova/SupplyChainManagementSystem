@@ -18,11 +18,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="FluentValidation" Version="11.11.0" />
+    <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.11.0" />
     <PackageReference Include="MediatR" Version="12.4.1" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\SCMS.Domain\SCMS.Domain.csproj" />
+    <ProjectReference Include="..\SCMS.Infrastructure\SCMS.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

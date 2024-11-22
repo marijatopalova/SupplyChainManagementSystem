@@ -1,6 +1,6 @@
 ﻿using MediatR;
-using SCMS.Application.Interfaces.Repositories;
 using SCMS.Domain.Entities;
+using SCMS.Domain.Interfaces;
 
 namespace SCMS.Application.Features.Products.Commands
 {
