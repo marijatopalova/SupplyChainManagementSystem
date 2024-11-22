@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SCMS.Application.Interfaces.Repositories;
 using SCMS.Domain.Entities;
+using SCMS.Domain.Interfaces;
 using SCMS.Infrastructure.Persistence;
 
 namespace SCMS.Infrastructure.Repositories

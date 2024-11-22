@@ -1,15 +1,10 @@
 ﻿using MediatR;
 using SCMS.Application.Interfaces.Repositories;
 using SCMS.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SCMS.Application.Features.Products.Commands
 {
-    public class CreateProductCommandHandler(IProductRepository productRepository) 
+    public class CreateProductCommandHandler(IProductRepository productRepository)
         : IRequestHandler<CreateProductCommand, Guid>
     {
         public async Task<Guid> Handle(CreateProductCommand command, CancellationToken cancellationToken)
