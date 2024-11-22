@@ -1,0 +1,40 @@
+name: .NET Core CI
+
+on:
+  push:
+    branches:
+      - master 
+  pull_request:
+    branches:
+      - master 
+      
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    # Check out the code from GitHub
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    # Set up .NET Core
+    - name: Set up .NET Core
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: '8.0.0' # Specify the .NET version you're using
+
+    # Restore dependencies
+    - name: Restore dependencies
+      run: dotnet restore
+
+    # Build the solution
+    - name: Build the solution
+      run: dotnet build --configuration Release
+
+    # Run unit tests
+    - name: Run tests
+      run: dotnet test --configuration Release --no-build --verbosity normal
+
+    # Enforce code style using dotnet format (optional)
+    - name: Run dotnet format
+      run: dotnet format --verify-no-changes
