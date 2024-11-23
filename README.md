@@ -49,5 +49,5 @@ This project adheres to **Clean Architecture** principles, ensuring:
 
 ---
 
-## 📂 Folder Structure
+[![.NET Core CI](https://github.com/marijatopalova/SupplyChainManagementSystem/actions/workflows/main.yml/badge.svg)](https://github.com/marijatopalova/SupplyChainManagementSystem/actions/workflows/main.yml)
 
