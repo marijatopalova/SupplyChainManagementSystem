@@ -2,10 +2,7 @@
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using SCMS.Application.Behaviors;
-using SCMS.Application.Features.Products.Commands;
 using SCMS.Application.Mappings;
-using SCMS.Domain.Interfaces;
-using SCMS.Infrastructure.Repositories;
 using System.Reflection;
 
 namespace SCMS.Application
@@ -21,11 +18,6 @@ namespace SCMS.Application
             services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
 
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
-
-            // Register repositories
-            services.AddScoped<IProductRepository, ProductRepository>();
-            services.AddScoped<IOrderRepository, OrderRepository>();
-            services.AddScoped<IInventoryRepository, InventoryRepository>();
 
             // Register AutoMapper
             services.AddAutoMapper(typeof(ProductProfile).Assembly);
