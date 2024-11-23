@@ -54,4 +54,4 @@ jobs:
 
       # Run Architecture Tests
       - name: Run Architecture Tests
-        run: dotnet test SCMS.ArchitectureTests/SCMS.ArchitectureTests.csproj --configuration Release --no-build --verbosity normal
+        run: dotnet test SupplyChainManagementSystem/SupplyChainManagementSystem/SCMS.ArchitectureTests/SCMS.ArchitectureTests.csproj --configuration Release --no-build --verbosity normal
