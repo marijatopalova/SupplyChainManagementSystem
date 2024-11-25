@@ -9,7 +9,7 @@ namespace SCMS.Application.Features.Products.Commands
     {
         public async Task<Guid> Handle(CreateProductCommand command, CancellationToken cancellationToken)
         {
-            var product = new Product(command.Name, command.Description, command.Price, command.QuantityInStock);
+            var product = new Product(command.Name, command.Description, command.Price, command.StockQuantity);
 
             await productRepository.AddAsync(product);
 

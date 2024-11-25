@@ -54,5 +54,20 @@ namespace SCMS.API.Controllers
 
             return Ok(product);
         }
+
+        /// <summary>
+        /// Deletes a product.
+        /// </summary>
+        /// <param name="id">The ID of the product.</param>
+        /// <returns>No content.</returns>
+        [HttpDelete("{id:guid}")]
+        public async Task<IActionResult> DeleteProduct(Guid id)
+        {
+            var command = new DeleteProductCommand(id);
+
+            await mediator.Send(command);
+
+            return NoContent();
+        }
     }
 }
