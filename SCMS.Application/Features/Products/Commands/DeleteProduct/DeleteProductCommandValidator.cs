@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SCMS.Application.Features.Products.Commands
+namespace SCMS.Application.Features.Products.Commands.DeleteProduct
 {
     public class DeleteProductCommandValidator : AbstractValidator<DeleteProductCommand>
     {

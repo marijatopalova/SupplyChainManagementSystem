@@ -1,9 +1,9 @@
 ﻿using MediatR;
 using SCMS.Domain.Interfaces;
 
-namespace SCMS.Application.Features.Products.Commands
+namespace SCMS.Application.Features.Products.Commands.DeleteProduct
 {
-    public class DeleteProductCommandHandler(IProductRepository productRepository) 
+    public class DeleteProductCommandHandler(IProductRepository productRepository)
         : IRequestHandler<DeleteProductCommand>
     {
         public async Task Handle(DeleteProductCommand request, CancellationToken cancellationToken)
