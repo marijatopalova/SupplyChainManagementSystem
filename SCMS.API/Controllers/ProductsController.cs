@@ -1,8 +1,8 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using SCMS.Application.Dtos;
-using SCMS.Application.Features.Products.Commands;
 using SCMS.Application.Features.Products.Commands.CreateProduct;
+using SCMS.Application.Features.Products.Commands.DeleteProduct;
 using SCMS.Application.Features.Products.Queries;
 
 namespace SCMS.API.Controllers
