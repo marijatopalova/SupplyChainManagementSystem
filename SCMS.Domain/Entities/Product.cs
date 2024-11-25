@@ -7,6 +7,7 @@
         public string Description { get; set; } = description;
         public decimal Price { get; set; } = price;
         public int StockQuantity { get; set; } = stockQuantity;
+        public bool IsDeleted { get; set; }
 
         public void UpdateDetails(string name, string description, decimal price)
         {

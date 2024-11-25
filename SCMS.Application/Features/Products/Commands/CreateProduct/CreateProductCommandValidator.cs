@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 
-namespace SCMS.Application.Features.Products.Commands
+namespace SCMS.Application.Features.Products.Commands.CreateProduct
 {
     public class CreateProductCommandValidator : AbstractValidator<CreateProductCommand>
     {

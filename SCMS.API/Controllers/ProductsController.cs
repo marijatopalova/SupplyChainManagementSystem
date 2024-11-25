@@ -1,7 +1,8 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using SCMS.Application.Dtos;
-using SCMS.Application.Features.Products.Commands;
+using SCMS.Application.Features.Products.Commands.CreateProduct;
+using SCMS.Application.Features.Products.Commands.DeleteProduct;
 using SCMS.Application.Features.Products.Queries;
 
 namespace SCMS.API.Controllers
@@ -53,6 +54,21 @@ namespace SCMS.API.Controllers
             var product = await mediator.Send(query);
 
             return Ok(product);
+        }
+
+        /// <summary>
+        /// Deletes a product.
+        /// </summary>
+        /// <param name="id">The ID of the product.</param>
+        /// <returns>No content.</returns>
+        [HttpDelete("{id:guid}")]
+        public async Task<IActionResult> DeleteProduct(Guid id)
+        {
+            var command = new DeleteProductCommand(id);
+
+            await mediator.Send(command);
+
+            return NoContent();
         }
     }
 }

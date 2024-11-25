@@ -15,7 +15,13 @@ namespace SCMS.Infrastructure.Repositories
 
         public async Task DeleteAsync(Product entity)
         {
-            dbContext.Products.Remove(entity);
+            if (entity == null)
+            {
+                throw new ArgumentNullException(nameof(entity), "The product entity cannot be null.");
+            }
+
+            entity.IsDeleted = true; 
+            dbContext.Products.Update(entity); 
             await dbContext.SaveChangesAsync();
         }
 
