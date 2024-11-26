@@ -43,8 +43,5 @@ jobs:
         with:
           dotnet-version: '8.0.404'
 
-      - name: Restore dependencies
-        run: dotnet restore
-
       - name: Run Unit and Architecture Tests on Solution
         run: dotnet test SupplyChainManagementSystem.sln --configuration Release --no-build --verbosity normal
