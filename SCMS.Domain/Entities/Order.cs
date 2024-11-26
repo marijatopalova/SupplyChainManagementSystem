@@ -1,17 +1,13 @@
-﻿namespace SCMS.Domain.Entities
+﻿using SCMS.Domain.Common;
+
+namespace SCMS.Domain.Entities
 {
-    public class Order
+    public class Order(string customerName) : BaseEntity
     {
-        public Guid Id { get; private set; } = Guid.NewGuid();
         public DateTime OrderDate { get; private set; } = DateTime.UtcNow;
-        public string CustomerName { get; private set; }
+        public string CustomerName { get; private set; } = customerName;
         public List<OrderItem> Items { get; private set; } = [];
         public decimal TotalAmount => Items.Sum(x => x.TotalPrice);
-
-        public Order(string customerName)
-        {
-            CustomerName = customerName;
-        }
 
         public void AddItem(Guid productId, string productName, decimal unitPrice, int quantity)
         {

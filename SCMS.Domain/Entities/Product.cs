@@ -1,8 +1,9 @@
-﻿namespace SCMS.Domain.Entities
+﻿using SCMS.Domain.Common;
+
+namespace SCMS.Domain.Entities
 {
-    public class Product(string name, string description, decimal price, int stockQuantity)
+    public class Product(string name, string description, decimal price, int stockQuantity) : BaseEntity
     {
-        public Guid Id { get; set; } = Guid.NewGuid();
         public string Name { get; set; } = name;
         public string Description { get; set; } = description;
         public decimal Price { get; set; } = price;
