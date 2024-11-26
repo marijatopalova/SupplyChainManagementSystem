@@ -1,4 +1,4 @@
-name: .NET Core CI
+name: .NET Core CI/CD Pipeline
 
 on:
   push:
@@ -9,39 +9,48 @@ on:
       - master
 
 jobs:
-  build:
+  build-and-test:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Set up .NET Core
+      - name: Set up .NET SDK
         uses: actions/setup-dotnet@v3
         with:
           dotnet-version: '8.0.404'
 
       - name: Restore dependencies
-        run: dotnet restore
+        run: dotnet restore SupplyChainManagementSystem.sln
 
       - name: Clean solution
         run: dotnet clean SupplyChainManagementSystem.sln
 
       - name: Build the solution
-        run: dotnet build --configuration Release
+        run: dotnet build SupplyChainManagementSystem.sln --configuration Release --no-restore
 
-  test:
+      - name: Run tests
+        run: dotnet test SupplyChainManagementSystem.sln --configuration Release --no-build --verbosity normal
+
+      - name: Publish test results
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: TestResults
+          path: '**/TestResults/*.trx'
+
+  publish-artifacts:
     runs-on: ubuntu-latest
-    needs: build
+    needs: build-and-test
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Set up .NET Core
-        uses: actions/setup-dotnet@v3
+      - name: Publish build artifacts
+        uses: actions/upload-artifact@v3
         with:
-          dotnet-version: '8.0.404'
-
-      - name: Run Unit and Architecture Tests on Solution
-        run: dotnet test SupplyChainManagementSystem.sln --configuration Release --no-build --verbosity normal
+          name: BuildArtifacts
+          path: |
+            **/bin/Release/
