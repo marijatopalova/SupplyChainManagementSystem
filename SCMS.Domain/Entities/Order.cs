@@ -2,19 +2,28 @@
 
 namespace SCMS.Domain.Entities
 {
-    public class Order(string customerName) : BaseEntity
+    public class Order : BaseEntity
     {
-        public DateTime OrderDate { get; private set; } = DateTime.UtcNow;
-        public string CustomerName { get; private set; } = customerName;
-        public List<OrderItem> Items { get; private set; } = [];
+        public DateTime OrderDate { get; set; } = DateTime.UtcNow;
+        public string CustomerName { get; set; }
+        public List<OrderItem> Items { get; set; } = [];
+        public OrderStatus OrderStatus { get; set; } = OrderStatus.Pending;
         public decimal TotalAmount => Items.Sum(x => x.TotalPrice);
 
-        public void AddItem(Guid productId, string productName, decimal unitPrice, int quantity)
+        public void AddItem(Guid productId, Guid orderId, string productName, decimal unitPrice, int quantity)
         {
             if(quantity <= 0)
                 throw new ArgumentException("Quantity must be greater than zero.", nameof(quantity));
 
-            var item = new OrderItem(productId, productName, unitPrice, quantity);
+            var item = new OrderItem()
+            {
+                ProductId = productId,
+                OrderId = orderId,
+                ProductName = productName,
+                UnitPrice = unitPrice,
+                Quantity = quantity
+            };
+
             Items.Add(item);
         }
 

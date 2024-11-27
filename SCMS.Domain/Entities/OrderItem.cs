@@ -3,13 +3,17 @@ using SCMS.Domain.Common;
 
 namespace SCMS.Domain.Entities
 {
-    public class OrderItem(Guid productId, string productName, decimal unitPrice, int quantity) : BaseEntity
+    public class OrderItem : BaseEntity
     {
-        public Guid ProductId { get; private set; } = productId;
-        public string ProductName { get; private set; } = productName;
-        public decimal UnitPrice { get; private set; } = unitPrice;
-        public int Quantity { get; private set; } = quantity;
+        public Guid ProductId { get; set; }
+        public Guid OrderId { get; set; }
+        public string ProductName { get; set; }
+        public decimal UnitPrice { get; set; }
+        public int Quantity { get; set; }
         public decimal TotalPrice => UnitPrice * Quantity;
+
+        public Product Product { get; set; }
+        public Order Order { get; set; }
 
         public void UpdateQuantity(int newQuantity)
         {

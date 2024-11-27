@@ -27,6 +27,9 @@ namespace SCMS.Infrastructure.Persistence
 
             modelBuilder.Entity<Product>()
                 .HasQueryFilter(p => !p.IsDeleted);
+
+            modelBuilder.Entity<OrderItem>()
+                .HasQueryFilter(oi => !oi.Product.IsDeleted);
         }
     }
 }
