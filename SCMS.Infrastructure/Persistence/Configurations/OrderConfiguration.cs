@@ -17,9 +17,12 @@ namespace SCMS.Infrastructure.Persistence.Configurations
             builder.Property(o => o.OrderDate)
                 .IsRequired();
 
+            builder.Property(o => o.OrderStatus)
+                .HasConversion<string>();
+
             builder.HasMany(o => o.Items)
-                .WithOne()
-                .HasForeignKey("OrderId") // Shadow property
+                .WithOne(o => o.Order)
+                .HasForeignKey(o => o.OrderId) 
                 .OnDelete(DeleteBehavior.Cascade);
         }
     }
