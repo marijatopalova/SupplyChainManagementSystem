@@ -1,16 +1,11 @@
-﻿namespace SCMS.Domain.Entities
-{
-    public class Inventory
-    {
-        public Guid Id { get; private set; } = Guid.NewGuid();
-        public Guid ProductId { get; private set; }
-        public int Quantity { get; private set; }
+﻿using SCMS.Domain.Common;
 
-        public Inventory(Guid productId, int quantity)
-        {
-            ProductId = productId;
-            Quantity = quantity;
-        }
+namespace SCMS.Domain.Entities
+{
+    public class Inventory(Guid productId, int quantity) : BaseEntity
+    {
+        public Guid ProductId { get; private set; } = productId;
+        public int Quantity { get; private set; } = quantity;
 
         public void AdjustQuantity(int amount)
         {

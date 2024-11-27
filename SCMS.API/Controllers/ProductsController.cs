@@ -3,7 +3,10 @@ using Microsoft.AspNetCore.Mvc;
 using SCMS.Application.Dtos;
 using SCMS.Application.Features.Products.Commands.CreateProduct;
 using SCMS.Application.Features.Products.Commands.DeleteProduct;
+using SCMS.Application.Features.Products.Commands.UpdateProduct;
 using SCMS.Application.Features.Products.Queries;
+using SCMS.Application.Features.Products.Queries.GetAllProducts;
+using SCMS.Application.Features.Products.Queries.GetProductById;
 
 namespace SCMS.API.Controllers
 {
@@ -69,6 +72,19 @@ namespace SCMS.API.Controllers
             await mediator.Send(command);
 
             return NoContent();
+        }
+
+        /// <summary>
+        /// Updates a product.
+        /// </summary>
+        /// <param name="command">The update product command.</param>
+        /// <returns>The product details.</returns>
+        [HttpPut]
+        public async Task<IActionResult> UpdateProduct(UpdateProductCommand command)
+        {
+            var product = await mediator.Send(command);
+
+            return Ok(product);
         }
     }
 }

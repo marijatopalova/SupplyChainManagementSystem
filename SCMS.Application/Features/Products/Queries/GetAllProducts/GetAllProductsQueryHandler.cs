@@ -3,9 +3,9 @@ using MediatR;
 using SCMS.Application.Dtos;
 using SCMS.Domain.Interfaces;
 
-namespace SCMS.Application.Features.Products.Queries
+namespace SCMS.Application.Features.Products.Queries.GetAllProducts
 {
-    public class GetAllProductsQueryHandler(IProductRepository productRepository, IMapper mapper) 
+    public class GetAllProductsQueryHandler(IProductRepository productRepository, IMapper mapper)
         : IRequestHandler<GetAllProductsQuery, List<ProductDto>>
     {
         public async Task<List<ProductDto>> Handle(GetAllProductsQuery request, CancellationToken cancellationToken)

@@ -3,7 +3,7 @@ using MediatR;
 using SCMS.Application.Dtos;
 using SCMS.Domain.Interfaces;
 
-namespace SCMS.Application.Features.Products.Queries
+namespace SCMS.Application.Features.Products.Queries.GetProductById
 {
     public class GetProductByIdQueryHandler(IProductRepository productRepository, IMapper mapper)
         : IRequestHandler<GetProductByIdQuery, ProductDto>
