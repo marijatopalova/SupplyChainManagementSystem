@@ -8,6 +8,9 @@ namespace SCMS.Domain.Entities
         public string CustomerName { get; set; }
         public List<OrderItem> Items { get; set; } = [];
         public OrderStatus OrderStatus { get; set; } = OrderStatus.Pending;
+        public string? TrackingNumber { get; set; }
+        public string? ShippingCarrier { get; set; }
+        public List<OrderHistory> OrderHistory { get; set; } = [];
         public decimal TotalAmount => Items.Sum(x => x.TotalPrice);
 
         public void AddItem(Guid productId, Guid orderId, string productName, decimal unitPrice, int quantity)
@@ -34,6 +37,19 @@ namespace SCMS.Domain.Entities
             {
                 Items.Remove(item);
             }
+        }
+
+        public void UpdateStatus(OrderStatus status)
+        {
+            var newOrderHistoryStatus = new OrderHistory()
+            {
+                PreviousStatus = OrderStatus,
+                NewStatus = status,
+                UpdatedAt = DateTime.UtcNow
+            };
+
+            OrderHistory.Add(newOrderHistoryStatus);
+            OrderStatus = status;
         }
     }
 }

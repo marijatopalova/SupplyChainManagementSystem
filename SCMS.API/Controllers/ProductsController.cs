@@ -4,7 +4,6 @@ using SCMS.Application.Dtos;
 using SCMS.Application.Features.Products.Commands.CreateProduct;
 using SCMS.Application.Features.Products.Commands.DeleteProduct;
 using SCMS.Application.Features.Products.Commands.UpdateProduct;
-using SCMS.Application.Features.Products.Queries;
 using SCMS.Application.Features.Products.Queries.GetAllProducts;
 using SCMS.Application.Features.Products.Queries.GetProductById;
 

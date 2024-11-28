@@ -12,7 +12,6 @@
     <Folder Include="Features\Inventory\Queries\" />
     <Folder Include="Features\Orders\Dtos\" />
     <Folder Include="Features\Orders\Events\" />
-    <Folder Include="Features\Orders\Queries\" />
   </ItemGroup>
 
   <ItemGroup>
