@@ -29,6 +29,7 @@ namespace SCMS.Infrastructure.Repositories
         public async Task<Order> GetByIdAsync(Guid id)
         {
             return await dbContext.Orders
+                .Include(x => x.OrderHistory)
                 .AsNoTracking()
                 .FirstOrDefaultAsync(x => x.Id == id);
         }

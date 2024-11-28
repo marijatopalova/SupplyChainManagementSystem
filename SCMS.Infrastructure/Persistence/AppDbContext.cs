@@ -24,6 +24,7 @@ namespace SCMS.Infrastructure.Persistence
             modelBuilder.ApplyConfiguration(new OrderConfiguration());
             modelBuilder.ApplyConfiguration(new OrderItemConfiguration());
             modelBuilder.ApplyConfiguration(new InventoryConfiguration());
+            modelBuilder.ApplyConfiguration(new OrderHistoryConfiguration());
 
             modelBuilder.Entity<Product>()
                 .HasQueryFilter(p => !p.IsDeleted);
